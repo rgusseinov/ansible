@@ -1,0 +1,13 @@
+# На какой группе серверов
+- hosts: staging
+
+  tasks:
+    - name: install nodejs
+      # apt-get update && apt-get install redis-server
+      ansible.builtin.apt: # имя модуля Ansible
+        name: nodejs
+        state: present
+        update_cache: yes
+      become: yes
+
+

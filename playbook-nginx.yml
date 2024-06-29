@@ -1,6 +1,10 @@
 # На какой группе серверов
 - hosts: staging
 
+  vars:
+    root_dir: /etc/nginx
+    nginx_port: 8081
+
   tasks:
     - name: install nginx
       ansible.builtin.apt:
@@ -9,9 +13,9 @@
       become: yes
       
     - name: update nginx config
-      ansible.builtin.copy: # имя модуля Ansible
-        src: files/nginx.conf
-        dest: /etc/nginx/nginx.conf
+      ansible.builtin.template: # имя модуля Ansible
+        src: files/nginx.conf.j2
+        dest: "{{root_dir}}/nginx.conf"
       tags: nginx
       
       notify:

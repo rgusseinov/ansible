@@ -1,0 +1,20 @@
+# На какой группе серверов
+- hosts: webservers
+  gather_facts: no
+
+  tasks:
+    - name: fetch php repository
+      ansible.builtin.apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+      become: yes
+
+    - name: install php8.2-cli 
+      # apt-get update && apt-get install redis-server
+      ansible.builtin.apt: # имя модуля Ansible
+        name: php8.2-cli
+        state: present
+        update_cache: yes
+      become: yes
+
+

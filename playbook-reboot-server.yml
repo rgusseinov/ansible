@@ -1,0 +1,11 @@
+# На какой группе серверов
+- hosts: webservers
+  gather_facts: yes
+
+  tasks:
+    - name: rebot ubuntu server
+      # apt-get update && apt-get install redis-server
+      ansible.builtin.command: reboot
+      when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
+      become: yes
+

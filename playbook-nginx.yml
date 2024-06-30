@@ -1,9 +1,9 @@
 # На какой группе серверов
-- hosts: staging
+- hosts: webservers
 
   vars:
     root_dir: /etc/nginx
-    nginx_port: 8081
+    nginx_port: 8080
 
   tasks:
     - name: install nginx
@@ -23,7 +23,7 @@
       become: yes
      
     - name: create index.html file in nginx
-      ansible.builtin.copy: # имя модуля Ansible
+      ansible.builtin.template: # имя модуля Ansible
         src: files/index.html
         dest: /usr/share/nginx/html/index.html 
       

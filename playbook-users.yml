@@ -1,0 +1,16 @@
+# На какой группе серверов
+- hosts: webservers
+
+  tasks:
+    - name: add users
+      # apt-get update && apt-get install redis-server
+      ansible.builtin.user: # имя модуля Ansible
+        name: "{{ item.name }}"
+        state: present
+        groups: "{{ item.groups }}"
+      loop:
+        - { name: jaime, groups: root }
+        - { name: sansa, groups: root }
+      become: yes
+
+
